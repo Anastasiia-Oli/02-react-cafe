@@ -14,10 +14,10 @@ function App() {
   });
 
   const handleVote = (type: VoteType) => {
-    setVotes({
-      ...votes,
-      [type]: votes[type] + 1,
-    });
+    setVotes((prevVotes) => ({
+      ...prevVotes,
+      [type]: prevVotes[type] + 1,
+    }));
   };
 
   const resetVotes = () => {
@@ -32,7 +32,7 @@ function App() {
   const positiveRate = totalVotes
     ? Math.round((votes.good / totalVotes) * 100)
     : 0;
-  const canReset = totalVotes > 0 ? true : false;
+  const canReset = totalVotes > 0;
 
   return (
     <div className={css.app}>
